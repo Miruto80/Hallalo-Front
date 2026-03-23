@@ -1,19 +1,17 @@
-# 1. Construcción
 FROM node:18-alpine AS build
 WORKDIR /app
 
-# Instalamos dependencias de forma limpia
+# Instalamos dependencias de forma estricta pero compatible
 COPY package*.json ./
 RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# Ejecutamos la exportación (Expo 54 exporta a la carpeta /dist)
+# Generamos la carpeta 'dist'
 RUN npx expo export --platform web
 
-# 2. Servidor
 FROM nginx:stable-alpine
-# IMPORTANTE: Cambiamos a /dist que es el estándar actual
+# Expo 54 genera los archivos en la carpeta /dist
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
