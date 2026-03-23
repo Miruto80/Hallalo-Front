@@ -1,17 +1,20 @@
+# Paso 1: Construcción
 FROM node:18-alpine AS build
 WORKDIR /app
 
-# Usamos CI=true para que npm install sea más estable en servidores
+# Instalamos dependencias
 COPY package*.json ./
 RUN npm install
 
+# Copiamos el resto del código
 COPY . .
 
-# CI=false evita que el build falle por simples warnings de linter
-RUN CI=false npm run build
+# Ejecutamos la exportación web de Expo
+RUN npx expo export:web
 
+# Paso 2: Servidor Nginx
 FROM nginx:stable-alpine
-# Verifica si tu carpeta de salida es /dist o /build
-COPY --from=build /app/dist /usr/share/nginx/html
+# Expo exporta por defecto a la carpeta /web-build
+COPY --from=build /app/web-build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
