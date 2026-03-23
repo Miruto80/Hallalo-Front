@@ -1,9 +1,11 @@
 version: '3.8'
 
 services:
-  web-front:
-    build: .
-    container_name: hallalo-app
+  hallalo-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hallalo-react-app
     ports:
-      - "8080:80"
+      - "8080:80"  
     restart: always
