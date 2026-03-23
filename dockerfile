@@ -3,7 +3,8 @@ WORKDIR /app
 
 # Instalamos dependencias de forma estricta pero compatible
 COPY package*.json ./
-RUN npm install --legacy-peer-deps
+# Cambia la línea del RUN npx expo export por esta:
+    RUN npx expo export --platform web --verbose || (echo "FALLO EL BUILD DE EXPO" && exit 1)
 
 COPY . .
 
