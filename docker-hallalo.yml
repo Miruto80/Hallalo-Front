@@ -9,3 +9,12 @@ services:
     ports:
       - "8080:80"  
     restart: always
+
+tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-tunnel-hallalo
+    restart: always
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiMjAzN2Q1NmFhYzVhZWE1YzgyZmU0MmJhOTU0YTEzMWMiLCJ0IjoiYjU3NjI0YzktMzFiNC00NmZlLTk5NzItNWZiZjJkMmViMDY0IiwicyI6IlpXVmxNalJsWldVdFptVTFNUzAwTURJNUxUazFZV0V0WVdGaFpEUTVPV05qTVRZeCJ9
+    command: tunnel --no-autoupdate run
+    
