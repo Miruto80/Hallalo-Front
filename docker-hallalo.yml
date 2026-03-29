@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # Tu aplicación de React/Expo
   hallalo-front:
     build:
       context: .
@@ -10,36 +11,10 @@ services:
       - "8080:80"
     restart: always
 
-  tunnel:  # <--- ASEGÚRATE QUE ESTÉ ALINEADO CON 'hallalo-front'
+  # El contenedor separado para el TÚNEL TEMPORAL
+  tunel:
     image: cloudflare/cloudflared:latest
-    container_name: cloudflare-tunnel-hallalo
+    container_name: cloudflare-temp-tunnel
     restart: always
-    environment:
-      - TUNNEL_TOKEN=eyJhIjoiMjAzN2Q1NmFhYzVhZWE1YzgyZmU0MmJhOTU0YTEzMWMiLCJ0IjoiYjU3NjI0YzktMzFiNC00NmZlLTk5NzItNWZiZjJkMmViMDY0IiwicyI6IlpXVmxNalJsWldVdFptVTFNUzAwTURJNUxUazFZV0V0WVdGaFpEUTVPV05qTVRZeCJ9
-    command: tunnel --no-autoupdate run
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # Este comando le dice: "Crea un túnel y apunta a mi otro contenedor"
+    command: tunnel --url http://hallalo-front:80
