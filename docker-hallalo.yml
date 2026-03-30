@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: hallalo-react-app
-    image: hallalo-front:latest 
+    image: localhost/hallalo-front:latest 
     ports:
       - "8080:80"
     restart: always
