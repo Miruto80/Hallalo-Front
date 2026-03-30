@@ -39,7 +39,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <Text style={styles.title}>Catálogo de Productos</Text>
+      <Text style={styles.title}>Catálogo de Productoss</Text>
 
       {/* Search Bar */}
       <TextInput
