@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # Tu aplicación de React/Expo
+  hallalo-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hallalo-react-app
+    image: localhost/hallalo-front:latest 
+    ports:
+      - "8080:80"
+    restart: always
+
+  # El contenedor separado para el TÚNEL TEMPORAL
+  tunel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-temp-tunnel
+    restart: always
+    # Este comando le dice: "Crea un túnel y apunta a mi otro contenedor"
+    command: tunnel --url http://hallalo-front:80
