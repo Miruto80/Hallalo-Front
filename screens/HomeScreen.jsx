@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import ProductCard from "../components/ProductCard";
+import Lista from "../components/Lista";
 
 const DATA = [
   {
@@ -67,6 +68,7 @@ export default function HomeScreen({ navigation }) {
         renderItem={renderProduct}
         contentContainerStyle={styles.list}
       />
+      <Lista />
     </View>
   );
 }

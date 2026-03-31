@@ -24,6 +24,7 @@ const Lista = () => {
   if (loading) {
     return (
       <View style={styles.center}>
+        <Text>Marcas</Text>
         <ActivityIndicator size="large" color="#007bff" />
         <Text style={styles.text}>Cargando marcas...</Text>
       </View>
