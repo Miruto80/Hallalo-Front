@@ -1,8 +1,8 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import useApi from '../hooks/useApi';
 
-const Lista = () => {
+const Basico = () => {
   const [marcas, setMarcas] = useState([]);
   const { loading, error, get } = useApi();
 
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
   nombre: { fontSize: 16, color: '#000' },
 });
 
-export default Lista;
+export default Basico;
